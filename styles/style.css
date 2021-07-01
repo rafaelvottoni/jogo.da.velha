@@ -1,0 +1,38 @@
+:root {
+  --dark-purple: #26001b;
+  --purple: #810034;
+  --light-purple: #ff005c;
+  --yellow: #fff600;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--dark-purple);
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Indie Flower', cursive;
+  color: var(--yellow);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.button {
+  background-color: var(--yellow);
+  color: var(--purple);
+  padding: 1rem;
+  width: 10rem;
+  border: none;
+  border-radius: 0.5rem;
+}
