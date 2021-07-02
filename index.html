@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt_br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,17 +16,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Source+Sans+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
 
     <title>Jogo da velh#</title>
   </head>
   <body>
-    <h1>Jogo da Velh<i class="icon-hash"></i></h1>
-    <div class="buttons">
-      <button class="button">Novo Jogo</button>
-      <button class="button">Carregar</button>
+    <div class="container">
+      <header>
+        <h1 class="logo">Jogo da Velh<i class="icon-hash"></i></h1>
+      </header>
+
+      <div class="buttons">
+        <button class="button computer">vs Computador</button>
+        <button class="button player">vs Jogador</button>
+      </div>
+    </div>
+    <footer>
+      <p>© Rafael Ottoni</p>
+      <a href="https://github.com/rafaelvottoni" target="_blank"
+        ><i class="icon icon-github"></i
+      ></a>
+
+      <a href="https://www.linkedin.com/in/rafaelvottoni/" target="_blank"
+        ><i class="icon icon-linkedin"></i
+      ></a>
+    </footer>
+
+    <!--Modals-->
+
+    <div class="modal-carregar-overlay">
+      <div class="modal-carregar">
+        <h2>Carregar último jogo?</h2>
+        <p>Jogador 1 (5) x (3) Jogador 2</p>
+        <div class="buttons-modal">
+          <button class="button">Não</button>
+          <button class="button">Sim</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>

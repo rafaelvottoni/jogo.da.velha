@@ -1,23 +1,55 @@
 :root {
+  /*Colors*/
   --dark-purple: #26001b;
   --purple: #810034;
   --light-purple: #ff005c;
   --yellow: #fff600;
+
+  /*Fonts*/
+
+  --font-logo: 'Indie Flower', cursive;
+  --font: 'Source Sans Pro', sans-serif;
 }
+
+/* Reset =================================*/
 
 * {
   padding: 0;
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   background-color: var(--dark-purple);
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
-h1 {
-  font-family: 'Indie Flower', cursive;
+/* Home Page ============================*/
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
+  box-sizing: border-box;
+}
+
+header {
+  padding-top: 3rem;
+}
+
+.logo {
+  font-family: var(--font-logo);
   color: var(--yellow);
+  font-size: 3.7rem;
 }
 
 .buttons {
@@ -35,4 +67,97 @@ h1 {
   width: 10rem;
   border: none;
   border-radius: 0.5rem;
+  font-size: 1rem;
+
+  font-weight: 600;
+  transition: 0.5s;
+  border: solid 1px var(--yellow);
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.button:hover {
+  opacity: 1;
+}
+
+.icon-hash {
+  margin-left: -16px;
+}
+
+/* Footer =============================*/
+
+footer {
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: var(--yellow);
+  font-family: var(--font);
+}
+
+a {
+  color: var(--yellow);
+  font-size: 2rem;
+  transition: 0.3s;
+}
+
+a:hover {
+  transform: translateY(-3px);
+  cursor: pointer;
+}
+
+/* Modal =======================*/
+
+.modal-carregar-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+
+.modal-carregar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  background-color: var(--dark-purple);
+}
+
+.modal-carregar {
+  width: 20rem;
+  height: 11rem;
+  background-color: var(--purple);
+  color: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+z-index: 999;
+  border: 2px solid black;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.buttons-modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1rem;
+  width: 100%;
+}
+
+.buttons-modal .button {
+  width: 40%;
 }
