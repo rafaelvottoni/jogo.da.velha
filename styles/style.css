@@ -38,12 +38,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8rem;
+  gap: 5rem;
   box-sizing: border-box;
 }
 
 header {
-  padding-top: 3rem;
+  padding-top: 2.5rem;
 }
 
 .logo {
@@ -168,7 +168,7 @@ a:hover {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: -8rem;
+  margin-top: -5rem;
 }
 form {
   max-width: 500px;
