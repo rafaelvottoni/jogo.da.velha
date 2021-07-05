@@ -108,6 +108,7 @@ a {
 
 a:hover {
   transform: translateY(-3px);
+  -webkit-transform: translateY(-3px);
   cursor: pointer;
 }
 
@@ -221,6 +222,7 @@ input {
   left: 0;
   bottom: 0;
   transform: translateY(13%);
+  -webkit-transform: translateY(13%);
 }
 
 .square .icon-o:before {
@@ -238,6 +240,7 @@ input {
   left: 0;
   bottom: 0;
   transform: translateY(13%);
+  -webkit-transform: translateY(13%);
 }
 
 .square .icon-x:before {

@@ -1,15 +1,11 @@
-/*Página inicial*/
+/*Selecionando o main*/
 
 const pageContent = document.querySelector('main')
-
-// iniciando a pagina
-const homePage = function () {
-  pageContent.innerHTML = htmlHomePage
-}
 
 //clicando em novo jogo
 
 const newGameAction = function () {
+  pageContent.innerHTML = ''
   pageContent.innerHTML = newGame
 }
 
@@ -40,6 +36,7 @@ const startGame = function () {
     name1: localStorage.setItem('name1', player1),
     name2: localStorage.setItem('name2', player2)
   }
+  pageContent.innerHTML = ''
   pageContent.innerHTML = gameWindow
   const namePlayers = document.querySelector('.scoreboard')
 
