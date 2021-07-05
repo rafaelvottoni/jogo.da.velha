@@ -268,7 +268,14 @@ input {
   gap: 0.6rem;
 }
 
-@media (max-height: 475px) {
+@media (max-width: 1200px) {
+  html {
+    font-size: 15px;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 767px) {
   html {
     font-size: 12px;
     overflow: scroll;
