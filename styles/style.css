@@ -267,3 +267,10 @@ input {
   align-items: center;
   gap: 0.6rem;
 }
+
+@media (max-height: 475px) {
+  html {
+    font-size: 12px;
+    overflow: scroll;
+  }
+}
