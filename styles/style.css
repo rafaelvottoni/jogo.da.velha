@@ -68,7 +68,7 @@ header {
   border: none;
   border-radius: 0.5rem;
   font-size: 1rem;
-
+  font-family: var(--font);
   font-weight: 600;
   transition: 0.5s;
   border: solid 1px var(--yellow);
@@ -144,7 +144,7 @@ a:hover {
   justify-content: center;
   text-align: center;
   gap: 1.5rem;
-z-index: 999;
+  z-index: 999;
   border: 2px solid black;
   border-radius: 0.25rem;
   box-sizing: border-box;
@@ -160,4 +160,110 @@ z-index: 999;
 
 .buttons-modal .button {
   width: 40%;
+}
+
+/*Form new players ==========================*/
+.player-names {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: -8rem;
+}
+form {
+  max-width: 500px;
+}
+
+input {
+  background: white;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.8rem;
+  width: 70%;
+  box-sizing: border-box;
+  margin-top: 0.8rem;
+}
+
+#player2 {
+  margin-bottom: 1rem;
+}
+
+/* Game =====================*/
+
+.container-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 5rem;
+  gap: 2.5rem;
+  box-sizing: border-box;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background-color: var(--dark-purple);
+  border: 5px solid var(--yellow);
+  display: inline-block;
+  margin: 0;
+  color: var(--yellow);
+  font-size: 4rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.square .icon-o {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateY(13%);
+}
+
+.square .icon-o:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.square .icon-x {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateY(13%);
+}
+
+.square .icon-x:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.scoreboard {
+  color: var(--yellow);
+  font-size: 1.5rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--font);
+}
+
+.scoreplayer1,
+.scoreplayer2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
 }

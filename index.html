@@ -22,17 +22,10 @@
 
     <title>Jogo da velh#</title>
   </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1 class="logo">Jogo da Velh<i class="icon-hash"></i></h1>
-      </header>
 
-      <div class="buttons">
-        <button class="button computer">vs Computador</button>
-        <button class="button player">vs Jogador</button>
-      </div>
-    </div>
+  <body>
+    <main></main>
+
     <footer>
       <p>© Rafael Ottoni</p>
       <a href="https://github.com/rafaelvottoni" target="_blank"
@@ -49,12 +42,20 @@
     <div class="modal-carregar-overlay">
       <div class="modal-carregar">
         <h2>Carregar último jogo?</h2>
-        <p>Jogador 1 (5) x (3) Jogador 2</p>
+        <p>Jogador 1 (-) x (-) Jogador 2</p>
         <div class="buttons-modal">
-          <button class="button">Não</button>
-          <button class="button">Sim</button>
+          <button class="button" onclick="ModalLoadGame.close()">Não</button>
+          <button class="button">Aguarde...</button>
         </div>
       </div>
     </div>
+
+    <script src="./scripts/game.js"></script>
+    <script src="./scripts/html.js"></script>
+    <script src="./scripts/interface.js"></script>
+
+    <script>
+      homePage()
+    </script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?83uem2');
-  src:  url('fonts/icomoon.eot?83uem2#iefix') format('embedded-opentype'),
+  src: url('fonts/icomoon.eot?83uem2');
+  src: url('fonts/icomoon.eot?83uem2#iefix') format('embedded-opentype'),
     url('fonts/icomoon.ttf?83uem2') format('truetype'),
     url('fonts/icomoon.woff?83uem2') format('woff'),
     url('fonts/icomoon.svg?83uem2#icomoon') format('svg');
@@ -10,10 +10,11 @@
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^='icon-'],
+[class*=' icon-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: never;
+
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -26,17 +27,17 @@
 }
 
 .icon-linkedin:before {
-  content: "\e903";
+  content: '\e903';
 }
 .icon-github:before {
-  content: "\e904";
+  content: '\e904';
 }
-.icon-circle:before {
-  content: "\e901";
+.icon-o:before {
+  content: '\e901';
 }
 .icon-x:before {
-  content: "\e902";
+  content: '\e902';
 }
 .icon-hash:before {
-  content: "\e900";
+  content: '\e900';
 }
