@@ -242,7 +242,6 @@ input {
   transform: translateY(13%);
   -webkit-transform: translateY(13%);
 }
-
 .square .icon-x:before {
   position: absolute;
   top: 0;
@@ -282,5 +281,23 @@ input {
   html {
     font-size: 12px;
     overflow: scroll;
+  }
+  .square .icon-o {
+    transform: translateY(20%);
+    -webkit-transform: translateY(20%);
+  }
+
+  .square .icon-x {
+    position: absolute;
+
+    transform: translateY(20%);
+    -webkit-transform: translateY(20%);
+  }
+}
+
+@media (max-height: 440px) {
+  footer {
+    visibility: hidden;
+    opacity: 0;
   }
 }

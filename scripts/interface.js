@@ -40,7 +40,7 @@ const startGame = function () {
   pageContent.innerHTML = gameWindow
   const namePlayers = document.querySelector('.scoreboard')
 
-  const GetStorage = {
+  let GetStorage = {
     name1: localStorage.getItem('name1'),
     name2: localStorage.getItem('name2')
   }
@@ -50,12 +50,12 @@ const startGame = function () {
 
   <div class="scoreplayer1">
   <i class="icon-o"></i>
-  <p>${GetStorage.name1}: <span>aguarde</span></p>
+  <p>${GetStorage.name1}: <span>${GetStorageScore.scorePlayer1}</span></p>
   </div>
   
   <div class="scoreplayer2">
   <i class="icon-x"></i>
-  <p>${GetStorage.name2}: <span>aguarde</span>
+  <p>${GetStorage.name2}: <span>${GetStorageScore.scorePlayer2}</span>
     </p>
   </div>
   `
@@ -92,6 +92,13 @@ function handleClick(event) {
   if (handleMove(position)) {
     setTimeout(() => {
       alert(' O Jogo Acabou - O Vencedor foi ' + playerTime)
+      if (playerTime == 0) {
+        scorePlayer1++
+      } else {
+        scorePlayer2++
+      }
+
+      updateGame()
     }, 10)
   }
   updateSquare(position)
@@ -115,3 +122,16 @@ function updateSquares() {
     }
   })
 }
+
+// Placar
+
+const SetStorageScore = {
+  scorePlayer1: localStorage.setItem('score1', scorePlayer1),
+  scorePlayer2: localStorage.setItem('score2', scorePlayer2)
+}
+const GetStorageScore = {
+  scorePlayer1: localStorage.getItem('score1'),
+  scorePlayer2: localStorage.getItem('score2')
+}
+
+//Depois do fim
