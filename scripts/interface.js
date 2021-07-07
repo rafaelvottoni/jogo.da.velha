@@ -120,7 +120,6 @@ function handleClick(event) {
   } else if (versusComputer === true && playerTime === 1) {
     position = computerPlay()
   }
-  console.log(position)
 
   // Vendo que ganhou o jogo para colocar no modal
   let winner
