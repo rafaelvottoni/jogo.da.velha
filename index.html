@@ -31,7 +31,7 @@
         </header>
 
         <div class="buttons">
-          <button class="button" onclick="newGameAction()">Novo Jogo</button>
+          <button class="button" onclick="PreGameFunctions.newGameAction()">Novo Jogo</button>
           <button class="button" onclick="ModalLoadGame.open()">
             Carregar
           </button>
@@ -58,7 +58,7 @@
         <p class="text-load-game"></p>
         <div class="buttons-modal">
           <button class="button" onclick="ModalLoadGame.close()">Não</button>
-          <button class="button" onclick="startGame()">Sim</button>
+          <button class="button" onclick="PreGameFunctions.startGame()">Sim</button>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
         <div class="text-modal-endgame"></div>
 
         <div class="buttons-modal">
-          <button class="button" onclick="resetGame()">Restart</button>
+          <button class="button" onclick="Restart.resetGame()">Restart</button>
         </div>
       </div>
     </div>

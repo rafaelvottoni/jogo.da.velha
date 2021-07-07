@@ -30,7 +30,7 @@ function handleMove(position) {
   if (board[position] == '') {
     board[position] = symbols[playerTime]
 
-    gameOver = isWin()
+    gameOver = Verifications.isWin()
 
     if (gameOver == false) {
       playerTime = playerTime == 0 ? 1 : 0
@@ -40,79 +40,90 @@ function handleMove(position) {
   return gameOver
 }
 
-function isWin() {
-  for (let i = 0; i < winStates.length; i++) {
-    let seq = winStates[i]
+//Verificações de empate e vitoria
+const Verifications = {
+  isWin() {
+    for (let i = 0; i < winStates.length; i++) {
+      let seq = winStates[i]
 
-    let pos1 = seq[0]
-    let pos2 = seq[1]
-    let pos3 = seq[2]
+      let pos1 = seq[0]
+      let pos2 = seq[1]
+      let pos3 = seq[2]
 
-    if (
-      board[pos1] == board[pos2] &&
-      board[pos1] == board[pos3] &&
-      board[pos1] != ''
+      if (
+        board[pos1] == board[pos2] &&
+        board[pos1] == board[pos3] &&
+        board[pos1] != ''
+      ) {
+        return true
+      }
+    }
+
+    return false
+  },
+
+  isTie() {
+    if (tie) {
+      return
+    }
+
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] == '' || gameOver) {
+        return false
+      }
+    }
+
+    return true
+  }
+}
+
+//Funções para resetar o jogo
+const Restart = {
+  resetGame() {
+    board = ['', '', '', '', '', '', '', '', '']
+
+    playerTime = playerTime == 0 ? 1 : 0 //Quem perder começa o proximo jogo
+
+    simbols = ['o', 'x']
+    tie = false
+    gameOver = false
+
+    Updates.whoPlays()
+
+    Restart.restart()
+
+    Modals.closeModalEndGame()
+  },
+
+  restart() {
+    let squares = document.querySelectorAll('.square')
+
+    squares.forEach(square => {
+      let position = square.id
+      let symbol = ' '
+
+      square.innerHTML = `<div class='icon-${symbol}'></div>`
+    })
+  }
+}
+
+//Funções para o computador jogar
+const ComputerPlayer = {
+  getRandom(min, max) {
+    return Math.round(Math.random() * (max - min) + min)
+  },
+
+  computerPlay() {
+    let position = ComputerPlayer.getRandom(0, 8)
+
+    while (
+      Verifications.isWin() === false &&
+      Verifications.isTie() === false &&
+      board[position] !== ''
     ) {
-      return true
+      position = ComputerPlayer.getRandom(0, 8)
     }
+
+    return position
   }
-
-  return false
-}
-
-function isTie() {
-  if (tie) {
-    return
-  }
-
-  for (let i = 0; i < board.length; i++) {
-    if (board[i] == '' || gameOver) {
-      return false
-    }
-  }
-
-  return true
-}
-
-function resetGame() {
-  board = ['', '', '', '', '', '', '', '', '']
-
-  playerTime = playerTime == 0 ? 1 : 0 //Quem perder começa o proximo jogo
-
-  simbols = ['o', 'x']
-  tie = false
-  gameOver = false
-
-  whoPlays()
-
-  restart()
-
-  closeModalEndGame()
-}
-
-function restart() {
-  let squares = document.querySelectorAll('.square')
-
-  squares.forEach(square => {
-    let position = square.id
-    let symbol = ' '
-
-    square.innerHTML = `<div class='icon-${symbol}'></div>`
-  })
-}
-
-function getRandom(min, max) {
-  return Math.round(Math.random() * (max - min) + min)
-}
-
-// computer player
-
-function computerPlay() {
-  let position = getRandom(0, 8)
-
-  while (isWin() === false && isTie() === false && board[position] !== '') {
-    position = getRandom(0, 8)
-  }
-
-  return position
 }

@@ -10,14 +10,15 @@ const newGame = `
 <button class="button player" onclick="GameMode.versusPlayer()">vs Jogador</button>
 </div>
 
-<div class="player-names"></div>`
+<div class="player-names"></div>
+`
 
 const playerNames = `
 
 <div class="form">
     <input
       type="text"
-      oninput="updateName1(this)"
+      oninput="Updates.updateName1(this)"
       id="player1"
       name="player1"
       placeholder="Nome do Jogador 1"
@@ -25,13 +26,13 @@ const playerNames = `
   
     <input
       type="text"
-      oninput="updateName2(this)"
+      oninput="Updates.updateName2(this)"
       id="player2"
       name="player2"
       placeholder="Nome do Jogador 2"
       
     />
-    <button class="button" onclick="startGame()">Start</button>
+    <button class="button" onclick="PreGameFunctions.startGame()">Start</button>
     
   </div>
 `
