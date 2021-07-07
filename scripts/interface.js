@@ -4,61 +4,78 @@ const pageContent = document.querySelector('main')
 
 //clicando em novo jogo
 
-const newGameAction = function () {
+function newGameAction() {
   pageContent.innerHTML = ''
   pageContent.innerHTML = newGame
 }
 
+//Selecionando o modo de jogo
+
 const GameMode = {
-  versusComputer() {},
+  versusComputer() {
+    localStorage.setItem('nome1', 'Player1')
+    localStorage.setItem('nome2', 'Bot')
+    localStorage.setItem('score1', scorePlayer1)
+    localStorage.setItem('score2', scorePlayer2)
+    versusComputer = true
+    startGame()
+  },
   versusPlayer() {
     const openNewPlayers = document.querySelector('.player-names')
     openNewPlayers.innerHTML = playerNames
+    localStorage.setItem('nome1', 'Player1')
+    localStorage.setItem('nome2', 'Player2')
+    localStorage.setItem('score1', scorePlayer1)
+    localStorage.setItem('score2', scorePlayer2)
+    versusComputer = false
   }
 }
 
-const startGame = function () {
-  const Form = {
-    player1: document.querySelector('#player1'),
-    player2: document.querySelector('#player2'),
+//Pegando os nomes do input
 
-    getValues() {
-      return {
-        player1: Form.player1.value,
-        player2: Form.player2.value
-      }
-    }
-  }
+function updateName1(element) {
+  let valor = element.value
+  localStorage.setItem('nome1', valor)
+}
 
-  const { player1, player2 } = Form.getValues()
+function updateName2(element) {
+  let valor = element.value
+  localStorage.setItem('nome2', valor)
+}
 
-  const SetStorage = {
-    name1: localStorage.setItem('name1', player1),
-    name2: localStorage.setItem('name2', player2)
-  }
+//Começando o jogo
+
+function startGame() {
+  ModalLoadGame.close()
   pageContent.innerHTML = ''
   pageContent.innerHTML = gameWindow
+
   const namePlayers = document.querySelector('.scoreboard')
 
-  let GetStorage = {
-    name1: localStorage.getItem('name1'),
-    name2: localStorage.getItem('name2')
+  const PlayerNames = {
+    name1: localStorage.getItem('nome1'),
+    name2: localStorage.getItem('nome2')
+  }
+
+  const PlayerScores = {
+    score1: localStorage.getItem('score1'),
+    score2: localStorage.getItem('score2')
   }
 
   namePlayers.innerHTML = `
 
 
-  <div class="scoreplayer1">
-  <i class="icon-o"></i>
-  <p>${GetStorage.name1}: <span>${GetStorageScore.scorePlayer1}</span></p>
-  </div>
-  
-  <div class="scoreplayer2">
-  <i class="icon-x"></i>
-  <p>${GetStorage.name2}: <span>${GetStorageScore.scorePlayer2}</span>
-    </p>
-  </div>
-  `
+          <div class="scoreplayer1">
+          <i class="icon-o"></i>
+          <p>${PlayerNames.name1}: <span class="scoreBoardNumber1">${PlayerScores.score1}</span></p>
+          </div>
+          
+          <div class="scoreplayer2">
+          <i class="icon-x"></i>
+          <p>${PlayerNames.name2}: <span class="scoreBoardNumber2">${PlayerScores.score2}</span>
+            </p>
+          </div>
+          `
 
   selectSquares()
 }
@@ -68,6 +85,16 @@ const startGame = function () {
 const ModalLoadGame = {
   open() {
     document.querySelector('.modal-carregar-overlay').classList.add('show')
+
+    const loadName1 = localStorage.getItem('nome1')
+    const loadName2 = localStorage.getItem('nome2')
+    if (loadName2 == 'Bot') {
+      versusComputer = true
+    }
+    const loadScore1 = localStorage.getItem('score1')
+    const loadScore2 = localStorage.getItem('score2')
+    const textLoadGame = document.querySelector('.text-load-game')
+    textLoadGame.innerHTML = `${loadName1} (${loadScore1}) x (${loadScore2}) ${loadName2}`
   },
 
   close() {
@@ -77,7 +104,7 @@ const ModalLoadGame = {
 
 // Game
 
-let selectSquares = function () {
+function selectSquares() {
   let squares = document.querySelectorAll('.square')
 
   squares.forEach(square => {
@@ -86,28 +113,58 @@ let selectSquares = function () {
 }
 
 function handleClick(event) {
-  let square = event.target
-  let position = square.id
+  let position
+
+  if (versusComputer == true && playerTime === 1) {
+    position = computerPlay()
+  } else {
+    position = event.target.id
+  }
+
+  let winner
+
+  if (playerTime == 0) {
+    winner = localStorage.getItem('nome1')
+  } else {
+    winner = localStorage.getItem('nome2')
+  }
 
   if (handleMove(position)) {
     setTimeout(() => {
-      alert(' O Jogo Acabou - O Vencedor foi ' + playerTime)
+      openModalEndGame(winner)
+
       if (playerTime == 0) {
         scorePlayer1++
+        localStorage.setItem('score1', scorePlayer1)
       } else {
         scorePlayer2++
+        localStorage.setItem('score2', scorePlayer2)
       }
 
-      updateGame()
-    }, 10)
+      updateScoreBoard()
+    }, 15)
+  } else if (isTie()) {
+    setTimeout(() => {
+      openModalEndGameTie()
+    }, 15)
   }
+
+  if (versusComputer == true && playerTime === 1) {
+    setTimeout(handleClick, 500)
+  }
+
   updateSquare(position)
+  whoPlays()
 }
 
 function updateSquare(position) {
   let square = document.getElementById(position.toString())
+
   let symbol = board[position]
-  square.innerHTML = `<i class='icon-${symbol}'></i>`
+  //Corrigindo um erro que aparecia ao clicar em um square com simbolo
+  if (square != null) {
+    square.innerHTML = `<i class='icon-${symbol}'></i>`
+  }
 }
 
 function updateSquares() {
@@ -123,15 +180,68 @@ function updateSquares() {
   })
 }
 
-// Placar
+// Atualizando Placar
 
-const SetStorageScore = {
-  scorePlayer1: localStorage.setItem('score1', scorePlayer1),
-  scorePlayer2: localStorage.setItem('score2', scorePlayer2)
-}
-const GetStorageScore = {
-  scorePlayer1: localStorage.getItem('score1'),
-  scorePlayer2: localStorage.getItem('score2')
+function updateScoreBoard() {
+  scorePlayer1 = localStorage.getItem('score1')
+  scorePlayer2 = localStorage.getItem('score2')
+
+  const scoreboardNumber1 = document.querySelector('.scoreBoardNumber1')
+  const scoreboardNumber2 = document.querySelector('.scoreBoardNumber2')
+
+  scoreboardNumber1.innerHTML = ''
+  scoreboardNumber1.innerHTML = `${scorePlayer1}`
+
+  scoreboardNumber2.innerHTML = ''
+  scoreboardNumber2.innerHTML = `${scorePlayer2}`
 }
 
-//Depois do fim
+//Restart e fim de jogos
+
+function restart() {
+  let squares = document.querySelectorAll('.square')
+
+  squares.forEach(square => {
+    let position = square.id
+    let symbol = ' '
+
+    square.innerHTML = `<div class='icon-${symbol}'></div>`
+  })
+}
+
+function openModalEndGame(winner) {
+  document.querySelector('.modal-endgame-overlay').classList.add('show')
+
+  const text = document.querySelector('.text-modal-endgame')
+
+  text.innerHTML = ` <h2> O Jogo Acabou - O vencedor foi: ${winner} </h2>`
+}
+
+function closeModalEndGame() {
+  document.querySelector('.modal-endgame-overlay').classList.remove('show')
+}
+
+function openModalEndGameTie() {
+  document.querySelector('.modal-endgame-overlay').classList.add('show')
+
+  const text = document.querySelector('.text-modal-endgame')
+
+  text.innerHTML = ` <h2> O Jogo Acabou - Empate </h2>`
+}
+
+function whoPlays() {
+  let playerTurn
+  let notPlayerTurn
+
+  if (playerTime == 0) {
+    playerTurn = document.querySelector('.scoreplayer1')
+    playerTurn.style.borderLeft = '0.2px solid var(--yellow)'
+    notPlayerTurn = document.querySelector('.scoreplayer2')
+    notPlayerTurn.style.borderLeft = 'none'
+  } else {
+    playerTurn = document.querySelector('.scoreplayer2')
+    playerTurn.style.borderLeft = '0.2px solid var(--yellow)'
+    notPlayerTurn = document.querySelector('.scoreplayer1')
+    notPlayerTurn.style.borderLeft = 'none'
+  }
+}

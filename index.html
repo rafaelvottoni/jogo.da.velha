@@ -55,10 +55,20 @@
     <div class="modal-carregar-overlay">
       <div class="modal-carregar">
         <h2>Carregar último jogo?</h2>
-        <p>Jogador 1 (-) x (-) Jogador 2</p>
+        <p class="text-load-game"></p>
         <div class="buttons-modal">
           <button class="button" onclick="ModalLoadGame.close()">Não</button>
-          <button class="button">Aguarde...</button>
+          <button class="button" onclick="startGame()">Sim</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-endgame-overlay">
+      <div class="modal-endgame">
+        <div class="text-modal-endgame"></div>
+
+        <div class="buttons-modal">
+          <button class="button" onclick="resetGame()">Restart</button>
         </div>
       </div>
     </div>

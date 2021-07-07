@@ -6,7 +6,7 @@ const newGame = `
 </header>
 
 <div class="buttons">
-<button class="button computer">Aguarde ...</button>
+<button class="button computer" onclick="GameMode.versusComputer()">vs Computador</button>
 <button class="button player" onclick="GameMode.versusPlayer()">vs Jogador</button>
 </div>
 
@@ -14,9 +14,10 @@ const newGame = `
 
 const playerNames = `
 
-<form action="" onsubmit="startGame()">
+<div class="form">
     <input
       type="text"
+      oninput="updateName1(this)"
       id="player1"
       name="player1"
       placeholder="Nome do Jogador 1"
@@ -24,14 +25,15 @@ const playerNames = `
   
     <input
       type="text"
+      oninput="updateName2(this)"
       id="player2"
       name="player2"
       placeholder="Nome do Jogador 2"
       
     />
-    <button class="button">Start</button>
+    <button class="button" onclick="startGame()">Start</button>
     
-  </form>
+  </div>
 `
 
 const gameWindow = `

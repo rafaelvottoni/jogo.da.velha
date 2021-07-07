@@ -149,6 +149,7 @@ a:hover {
   border: 2px solid black;
   border-radius: 0.25rem;
   box-sizing: border-box;
+  font-family: var(--font);
 }
 
 .buttons-modal {
@@ -163,6 +164,46 @@ a:hover {
   width: 40%;
 }
 
+/*Modal endgame ============================*/
+
+.modal-endgame-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+
+.modal-endgame-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  background-color: var(--dark-purple);
+}
+
+.modal-endgame {
+  width: 20rem;
+  height: 11rem;
+  background-color: var(--purple);
+  color: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+  z-index: 999;
+  border: 2px solid black;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
 /*Form new players ==========================*/
 .player-names {
   display: flex;
@@ -171,7 +212,7 @@ a:hover {
   justify-content: center;
   margin-top: -5rem;
 }
-form {
+.form {
   max-width: 500px;
 }
 
@@ -268,7 +309,18 @@ input {
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
+  padding-left: 5px;
 }
+
+/* Player time ==============================*/
+
+.scoreplayer1 {
+  box-sizing: border-box;
+
+  border-left: 0.2px solid var(--yellow);
+}
+
+/* Responsive ====================*/
 
 @media (max-width: 1200px) {
   html {
