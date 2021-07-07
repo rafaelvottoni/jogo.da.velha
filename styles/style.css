@@ -336,6 +336,7 @@ input {
   opacity: 0;
   transition: 0.3s;
   border: none;
+  cursor: pointer;
 }
 
 .back-to-home.show {
