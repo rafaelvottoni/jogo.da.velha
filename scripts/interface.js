@@ -5,6 +5,7 @@ const pageContent = document.querySelector('main')
 //clicando em novo jogo
 
 function newGameAction() {
+  ButtonHomePage.showButtonHome()
   pageContent.innerHTML = ''
   pageContent.innerHTML = newGame
 }
@@ -47,6 +48,7 @@ function updateName2(element) {
 
 function startGame() {
   ModalLoadGame.close()
+  ButtonHomePage.showButtonHome()
   pageContent.innerHTML = ''
   pageContent.innerHTML = gameWindow
 
@@ -248,5 +250,15 @@ function whoPlays() {
     playerTurn.style.borderLeft = '0.2px solid var(--yellow)'
     notPlayerTurn = document.querySelector('.scoreplayer1')
     notPlayerTurn.style.borderLeft = 'none'
+  }
+}
+
+const ButtonHomePage = {
+  showButtonHome() {
+    const buttonHome = document.querySelector('.back-to-home')
+    buttonHome.classList.add('show')
+  },
+  clickButtonHome() {
+    document.location.reload()
   }
 }
