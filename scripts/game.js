@@ -61,7 +61,7 @@ function isWin() {
 }
 
 function isTie() {
-  if (gameOver || tie) {
+  if (tie) {
     return
   }
 
@@ -71,20 +71,34 @@ function isTie() {
     }
   }
 
-  tie = true
   return true
 }
 
 function resetGame() {
   board = ['', '', '', '', '', '', '', '', '']
-  playerTime = getRandom(0, 1) //Para variar quem começa jogando
+
+  playerTime = playerTime == 0 ? 1 : 0 //Quem perder começa o proximo jogo
+
   simbols = ['o', 'x']
   tie = false
   gameOver = false
 
+  whoPlays()
+
   restart()
+
   closeModalEndGame()
-  console.log('Estou aqui')
+}
+
+function restart() {
+  let squares = document.querySelectorAll('.square')
+
+  squares.forEach(square => {
+    let position = square.id
+    let symbol = ' '
+
+    square.innerHTML = `<div class='icon-${symbol}'></div>`
+  })
 }
 
 function getRandom(min, max) {
@@ -96,7 +110,7 @@ function getRandom(min, max) {
 function computerPlay() {
   let position = getRandom(0, 8)
 
-  while (isWin() === false && board[position] !== '') {
+  while (isWin() === false && isTie() === false && board[position] !== '') {
     position = getRandom(0, 8)
   }
 

@@ -115,45 +115,55 @@ function selectSquares() {
 function handleClick(event) {
   let position
 
-  if (versusComputer == true && playerTime === 1) {
-    position = computerPlay()
-  } else {
+  if (versusComputer === false || playerTime === 0) {
     position = event.target.id
+  } else if (versusComputer === true && playerTime === 1) {
+    position = computerPlay()
   }
+  console.log(position)
 
+  // Vendo que ganhou o jogo para colocar no modal
   let winner
 
-  if (playerTime == 0) {
+  if (playerTime === 0) {
     winner = localStorage.getItem('nome1')
   } else {
     winner = localStorage.getItem('nome2')
   }
 
+  //Executando função se o computador for o primeiro a jogar:
+
   if (handleMove(position)) {
     setTimeout(() => {
+      //se isWin for true
       openModalEndGame(winner)
 
-      if (playerTime == 0) {
+      if (playerTime === 0) {
+        scorePlayer1 = localStorage.getItem('score1')
         scorePlayer1++
         localStorage.setItem('score1', scorePlayer1)
       } else {
+        scorePlayer2 = localStorage.getItem('score2')
         scorePlayer2++
         localStorage.setItem('score2', scorePlayer2)
       }
 
       updateScoreBoard()
-    }, 15)
+    }, 300)
   } else if (isTie()) {
+    //se isTie for true
     setTimeout(() => {
       openModalEndGameTie()
-    }, 15)
-  }
-
-  if (versusComputer == true && playerTime === 1) {
-    setTimeout(handleClick, 500)
+    }, 20)
+  } else {
+    //Se isTie e isWin for false
+    if (versusComputer && playerTime === 1) {
+      setTimeout(handleClick, 300)
+    }
   }
 
   updateSquare(position)
+
   whoPlays()
 }
 
@@ -172,6 +182,13 @@ function updateSquares() {
 
   squares.forEach(square => {
     let position = square.id
+
+    if (versusComputer == false || playerTime === 0) {
+      position = square.id
+    } else if (versusComputer == true && playerTime === 1) {
+      position = computerPlay()
+    }
+
     let symbol = board[position]
 
     if (symbol != '') {
@@ -198,17 +215,6 @@ function updateScoreBoard() {
 
 //Restart e fim de jogos
 
-function restart() {
-  let squares = document.querySelectorAll('.square')
-
-  squares.forEach(square => {
-    let position = square.id
-    let symbol = ' '
-
-    square.innerHTML = `<div class='icon-${symbol}'></div>`
-  })
-}
-
 function openModalEndGame(winner) {
   document.querySelector('.modal-endgame-overlay').classList.add('show')
 
@@ -233,7 +239,7 @@ function whoPlays() {
   let playerTurn
   let notPlayerTurn
 
-  if (playerTime == 0) {
+  if (playerTime === 0) {
     playerTurn = document.querySelector('.scoreplayer1')
     playerTurn.style.borderLeft = '0.2px solid var(--yellow)'
     notPlayerTurn = document.querySelector('.scoreplayer2')
