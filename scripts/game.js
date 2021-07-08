@@ -1,6 +1,7 @@
 // iniciar minhas variáveis
 let board = ['', '', '', '', '', '', '', '', '']
 let playerTime = 0
+let firstPlayer = 0
 let symbols = ['o', 'x']
 let gameOver = false
 let tie = false
@@ -82,7 +83,9 @@ const Restart = {
   resetGame() {
     board = ['', '', '', '', '', '', '', '', '']
 
-    playerTime = playerTime == 0 ? 1 : 0 //Quem perder começa o proximo jogo
+    firstPlayer = firstPlayer == 0 ? 1 : 0 //o primeiro player será alternado
+
+    playerTime = firstPlayer
 
     simbols = ['o', 'x']
     tie = false
