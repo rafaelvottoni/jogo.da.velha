@@ -35,6 +35,7 @@ body {
   height: 100%;
   width: 100%;
   display: flex;
+  -webkit-display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -54,6 +55,7 @@ header {
 
 .buttons {
   display: flex;
+  -webkit-display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -89,6 +91,7 @@ header {
 footer {
   padding-bottom: 1rem;
   display: flex;
+  -webkit-display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
@@ -121,6 +124,7 @@ a:hover {
   width: 100%;
   height: 100%;
   display: flex;
+  -webkit-display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -140,6 +144,7 @@ a:hover {
   background-color: var(--purple);
   color: var(--yellow);
   display: flex;
+  -webkit-display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -154,6 +159,7 @@ a:hover {
 
 .buttons-modal {
   display: flex;
+  -webkit-display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   gap: 1rem;
@@ -173,6 +179,7 @@ a:hover {
   width: 100%;
   height: 100%;
   display: flex;
+  -webkit-display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
@@ -192,6 +199,7 @@ a:hover {
   background-color: var(--purple);
   color: var(--yellow);
   display: flex;
+  -webkit-display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -207,6 +215,7 @@ a:hover {
 /*Form new players ==========================*/
 .player-names {
   display: flex;
+  -webkit-display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -234,6 +243,7 @@ input {
 
 .container-grid {
   display: flex;
+  -webkit-display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -296,6 +306,7 @@ input {
   font-size: 1.5rem;
   text-align: left;
   display: flex;
+  -webkit-display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -306,6 +317,7 @@ input {
 .scoreplayer1,
 .scoreplayer2 {
   display: flex;
+  -webkit-display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.6rem;
