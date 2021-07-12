@@ -79,9 +79,9 @@ const GameFunctions = {
   handleClick(event) {
     let position
 
-    if (versusComputer === false || playerTime === 0) {
+    if (!versusComputer || playerTime == 0) {
       position = event.target.id
-    } else if (versusComputer === true && playerTime === 1) {
+    } else if (versusComputer && playerTime == 1) {
       position = ComputerPlayer.computerPlay()
     }
 

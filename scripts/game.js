@@ -96,6 +96,11 @@ const Restart = {
     Restart.restart()
 
     Modals.closeModalEndGame()
+
+    // Para o computador jogar caso seja o player1:
+    if (versusComputer && playerTime === 1) {
+      setTimeout(GameFunctions.handleClick, 500)
+    }
   },
 
   restart() {
@@ -120,8 +125,8 @@ const ComputerPlayer = {
     let position = ComputerPlayer.getRandom(0, 8)
 
     while (
-      Verifications.isWin() === false &&
-      Verifications.isTie() === false &&
+      Verifications.isWin() == false &&
+      Verifications.isTie() == false &&
       board[position] !== ''
     ) {
       position = ComputerPlayer.getRandom(0, 8)
